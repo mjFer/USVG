@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SVG Proj", "SVG Proj.csproj", "{62437F61-8DD2-FA94-F3BB-06479905AB76}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62437F61-8DD2-FA94-F3BB-06479905AB76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62437F61-8DD2-FA94-F3BB-06479905AB76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62437F61-8DD2-FA94-F3BB-06479905AB76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62437F61-8DD2-FA94-F3BB-06479905AB76}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
