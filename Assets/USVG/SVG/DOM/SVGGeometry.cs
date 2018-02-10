@@ -23,7 +23,7 @@ namespace USVG {
 		public override void Render(SVGElement parent)
 		{
 			if (_gameobject == null) {
-				_gameobject = new GameObject();
+				_gameobject = new GameObject(name);
 				_gameobject.AddComponent(typeof(MeshRenderer));
 				if (parent != null)
 					_gameobject.transform.parent = parent.gameObject.transform;

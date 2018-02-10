@@ -8,6 +8,7 @@ namespace USVG {
 	public abstract class SVGElement {
 		Dictionary<string, string> attrList;
 		SVGTransformList transformlist;
+		protected string name;
 
 		protected GameObject _gameobject;
 
@@ -18,7 +19,14 @@ namespace USVG {
 		protected SVGElement(Dictionary<string, string> _attrList) {
 			attrList = _attrList;
 
-			foreach(KeyValuePair<string,string> attr in attrList){
+			if(attrList.ContainsKey("id")){
+				name = attrList["id"];
+			}else{
+				name = this.ToString() + "-" + SVGGenerals.getElementId();
+			}
+
+
+			foreach (KeyValuePair<string,string> attr in attrList){
 				switch(attr.Key){
 					case "transform":
 						transformlist = new SVGTransformList();

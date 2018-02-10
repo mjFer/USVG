@@ -97,6 +97,7 @@
     <Compile Include="Assets\USVG\SVG\DOM\Transform\SVGMatrix.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\Transform\SVGTransform.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\Transform\SVGTransformList.cs" />
+    <Compile Include="Assets\USVG\SVG\SVGGenerals.cs" />
     <Compile Include="Assets\USVG\SVG\SVGParser.cs" />
     <Compile Include="Assets\USVG\SVGLoader.cs" />
     <Compile Include="Assets\USVG\Utils\SmallXmlParser.cs" />
