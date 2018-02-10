@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace USVG {
@@ -20,7 +19,7 @@ namespace USVG {
 		private static List<Vector2> ExtractPoints(string inputText)
 		{
 			List<Vector2> _return = new List<Vector2>();
-			string[] _lstStr = ExtractValuesFromString(inputText);
+			string[] _lstStr = StringParser.ExtractValuesFromString(inputText);
 
 			int len = _lstStr.Length;
 
@@ -36,10 +35,6 @@ namespace USVG {
 			return _return;
 		}
 
-		private static char[] sepCharacters = new char[] { ' ', ',', '\n', '\t', '\r' };
-		public static string[] ExtractValuesFromString(string inputText){
-			return inputText.Split(sepCharacters, StringSplitOptions.RemoveEmptyEntries);
-		}
 
 		protected override void GenerateGameObject(Transform parent)
 		{

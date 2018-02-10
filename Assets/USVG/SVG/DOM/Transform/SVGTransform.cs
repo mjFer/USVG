@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+using System;
+
+
 namespace USVG {
 	public class SVGTransform {
 		SVGMatrix _matrix;
@@ -60,6 +63,47 @@ namespace USVG {
 		{
 			_type = SVGTransformType.SVG_TRANSFORM_SKEWY;
 			_matrix = new SVGMatrix().SkewY(angle);
+		}
+
+		public void TransformParseAttr(string type, string parms){
+			float[] values = StringParser.ConvertAttrNumber(parms);
+			float y;
+			float x;
+
+			switch(type){
+				case "matrix":
+					_type = SVGTransformType.SVG_TRANSFORM_MATRIX;
+					setMatrix(new SVGMatrix(values[0], values[1], values[2], values[3], values[4], values[5]));
+					break;
+				case "translate":
+					_type = SVGTransformType.SVG_TRANSFORM_TRANSLATE;
+					y = values.Length == 2 ? y = values[1] : 0;
+					setTranslate(values[0], y);
+					break;
+				case "scale":
+					_type = SVGTransformType.SVG_TRANSFORM_SCALE;
+					y = values.Length == 2 ? y = values[1] : 0;
+					setScale(values[0], y);
+					break;
+				case "rotate":
+					_type = SVGTransformType.SVG_TRANSFORM_ROTATE;
+					x = values.Length >= 2 ? x = values[1] : 0;
+					y = values.Length >= 3 ? y = values[0] : 0;
+					setRotate(values[0], x, y);
+					break;
+				case "skewX":
+					_type = SVGTransformType.SVG_TRANSFORM_SKEWX;
+					setSkewX(values[0]);
+					break;
+				case "skewY":
+					_type = SVGTransformType.SVG_TRANSFORM_SKEWY;
+					setSkewY(values[0]);
+					break;
+				default:
+					Debug.Log("Transformacion Desconocida!");
+					break;
+			}
+
 		}
 
 	}

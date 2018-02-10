@@ -31,12 +31,12 @@ namespace USVG {
 			_attrList.TryGetValue("rx", out rx);
 			_attrList.TryGetValue("ry", out ry);
 
-			_x = float.Parse(x);
-			_y = float.Parse(y);
-			_width = float.Parse(width);
-			_height = float.Parse(height);
-			_rx = float.Parse(rx);
-			_ry = float.Parse(ry);
+			float.TryParse(x, out _x);
+			float.TryParse(y, out _y);
+			float.TryParse(width, out _width);
+			float.TryParse(height, out _height);
+			float.TryParse(rx, out _rx);
+			float.TryParse(ry, out _ry);
 
 		}
 

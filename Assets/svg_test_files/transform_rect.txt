@@ -1,0 +1,12 @@
+<svg width="180" height="200"
+  xmlns="http://www.w3.org/2000/svg" 
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+
+ 
+  <rect x="50" y="50" height="100" width="100" style="stroke:#000; fill: #0086B2"></rect>
+
+  
+  <rect x="50" y="50" height="100" width="100" style="stroke:#000; fill: #0086B2" transform="translate(30) rotate(45 50 50)"></rect>
+ 
+
+</svg>

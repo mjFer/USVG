@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+using System.Text.RegularExpressions;
+
 namespace USVG {
 	class SVGTransformList {
 		List<SVGTransform> _transformList;
@@ -64,5 +66,18 @@ namespace USVG {
 
 			return newTr;
 		}
+
+		public void ParseAttributes(string attrs){
+			Debug.Log(this.ToString() + ": ParseAttributes: " + attrs);
+			List<KeyValuePair<string, string>> dic = StringParser.StringAttrTransform(attrs);
+
+			foreach(KeyValuePair<string, string> keypar in dic){
+				SVGTransform tr = new SVGTransform();
+				tr.TransformParseAttr(keypar.Key, keypar.Value);
+				_transformList.Add(tr);
+			}
+		}
+
+
 	};
 }

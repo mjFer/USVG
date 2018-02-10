@@ -832,7 +832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80aff3c9118f01a4c8909fe3916110c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  svgAsset: {fileID: 4900000, guid: ff46dea7eca91ea4995ffedbe24928ab, type: 3}
+  svgAsset: {fileID: 4900000, guid: a00e35274761bf4428e556667898af27, type: 3}
 --- !u!4 &1074059767
 Transform:
   m_ObjectHideFlags: 0
