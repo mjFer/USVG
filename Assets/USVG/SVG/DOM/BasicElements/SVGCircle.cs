@@ -5,7 +5,9 @@ using System.Text;
 using UnityEngine;
 
 namespace USVG {
-	public class SVGCircle : SVGElement {
+	public class SVGCircle : SVGGeometry {
+		private const int nSegments = 20;
+
 		private float _cx, _cy, _r;
 
 		public float cx { get { return _cx; } }
@@ -26,9 +28,11 @@ namespace USVG {
 			_r = float.Parse(r);
 		}
 
-		protected override void GenerateGameObject(Transform parent)
+		public override void Render(SVGElement parent)
 		{
-			Debug.LogError("No Implementado!");
+			vectors_2d = GeometryTools.CreateCircle(_cx, _cy, _r, nSegments);
+		
+			base.Render(parent);
 		}
 	}
 

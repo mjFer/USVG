@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 
 namespace USVG {
-	public class SVGLine : SVGElement {
+	public class SVGLine : SVGGeometry {
 		private float _x1, _x2, _y1, _y2;
 
 		public float x1 { get { return _x1; } }
@@ -31,7 +31,7 @@ namespace USVG {
 			
 		}
 
-		protected override void GenerateGameObject(Transform parent)
+		public override void Render(SVGElement parent)
 		{
 			Debug.LogError("No Implementado!");
 		}

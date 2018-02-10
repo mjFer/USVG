@@ -114,49 +114,48 @@ public class SVGParser : SmallXmlParser.IContentHandler {
 		currentContainer = currentContainer.parent;
 	}
 
-	public void GetElements(List<SVGElement> elementList, NodeContainer parent){
-		foreach(Node node in parent.childs){
-			switch (node.Name) {
-				case Node.SVGNodeType.Rect:
-					elementList.Add(new SVGRect(node.Attributes));
-					break;
-				case Node.SVGNodeType.Line:
-					elementList.Add(new SVGLine(node.Attributes));
-					break;
-				case Node.SVGNodeType.Circle:
-					elementList.Add(new SVGCircle(node.Attributes));
-					break;
-				case Node.SVGNodeType.Ellipse:
-					elementList.Add(new SVGEllipse(node.Attributes));
-					break;
-				case Node.SVGNodeType.PolyLine:
-					elementList.Add(new SVGPolyline(node.Attributes));
-					break;
-				case Node.SVGNodeType.Polygon:
-					elementList.Add(new SVGPolygon(node.Attributes));
-					break;
-				case Node.SVGNodeType.Path:
-					elementList.Add(new SVGPath(node.Attributes));
-					break;
+	private void GetElement(List<SVGElement> elementList, Node node){
+		switch (node.Name) {
+			case Node.SVGNodeType.Rect:
+				elementList.Add(new SVGRect(node.Attributes));
+				break;
+			case Node.SVGNodeType.Line:
+				elementList.Add(new SVGLine(node.Attributes));
+				break;
+			case Node.SVGNodeType.Circle:
+				elementList.Add(new SVGCircle(node.Attributes));
+				break;
+			case Node.SVGNodeType.Ellipse:
+				elementList.Add(new SVGEllipse(node.Attributes));
+				break;
+			case Node.SVGNodeType.PolyLine:
+				elementList.Add(new SVGPolyline(node.Attributes));
+				break;
+			case Node.SVGNodeType.Polygon:
+				elementList.Add(new SVGPolygon(node.Attributes));
+				break;
+			case Node.SVGNodeType.Path:
+				elementList.Add(new SVGPath(node.Attributes));
+				break;
 
-				case Node.SVGNodeType.SVG:
-					SVGSVG svg = new SVGSVG(node.Attributes);
-					if ((node as NodeContainer).childs.Count > 0) {
-						List<SVGElement> subElementList = new List<SVGElement>();
-						GetElements(subElementList, node as NodeContainer);
-						svg.addChildren(subElementList);
-					}
-					elementList.Add(svg);
-					break;
-				case Node.SVGNodeType.G:
-					SVGG svgg = new SVGG(node.Attributes);
-					if ((node as NodeContainer).childs.Count > 0) {
-						List<SVGElement> subElementList = new List<SVGElement>();
-						GetElements(subElementList, node as NodeContainer);
-						svgg.addChildren(subElementList);
-					}
-					elementList.Add(svgg);
-					break;
+			case Node.SVGNodeType.SVG:
+				SVGSVG svg = new SVGSVG(node.Attributes);
+				if ((node as NodeContainer).childs.Count > 0) {
+					List<SVGElement> subElementList = new List<SVGElement>();
+					GetElements(subElementList, node as NodeContainer);
+					svg.addChildren(subElementList);
+				}
+				elementList.Add(svg);
+				break;
+			case Node.SVGNodeType.G:
+				SVGG svgg = new SVGG(node.Attributes);
+				if ((node as NodeContainer).childs.Count > 0) {
+					List<SVGElement> subElementList = new List<SVGElement>();
+					GetElements(subElementList, node as NodeContainer);
+					svgg.addChildren(subElementList);
+				}
+				elementList.Add(svgg);
+				break;
 
 				//case Node.SVGNodeName.LinearGradient: paintable.AppendLinearGradient(new SVGLinearGradientElement(this, Node.Attributes)); break;
 				//case Node.SVGNodeName.RadialGradient: paintable.AppendRadialGradient(new SVGRadialGradientElement(this, Node.Attributes)); break;
@@ -164,15 +163,18 @@ public class SVGParser : SmallXmlParser.IContentHandler {
 				//case Node.SVGNodeName.Defs: GetElementList(elementList, paintable, render, summaryTransformList); break;
 				//case Node.SVGNodeName.Title: GetElementList(elementList, paintable, render, summaryTransformList); break;
 				//case Node.SVGNodeName.Desc: GetElementList(elementList, paintable, render, summaryTransformList); break;
-			}
-
 		}
+	}
 
+	public void GetElements(List<SVGElement> elementList, NodeContainer parent){
+		foreach(Node node in parent.childs){
+			GetElement(elementList, node);
+		}
 	}
 
 	public void GetElementList(List<SVGElement> elementList)
 	{
-		GetElements(elementList, firstContainer);
+		GetElement(elementList, firstContainer);
 	}
 
 	

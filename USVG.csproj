@@ -93,6 +93,7 @@
     <Compile Include="Assets\USVG\SVG\DOM\ContainerElements\SVGG.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\ContainerElements\SVGSVG.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\SVGElement.cs" />
+    <Compile Include="Assets\USVG\SVG\DOM\SVGGeometry.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\Transform\SVGMatrix.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\Transform\SVGTransform.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\Transform\SVGTransformList.cs" />
@@ -107,6 +108,7 @@
     <None Include="Assets\svg_test_files\homer-simpsonIncomp.txt" />
     <None Include="Assets\svg_test_files\myspace.txt" />
     <None Include="Assets\svg_test_files\rects.txt" />
+    <None Include="Assets\svg_test_files\shapes.txt" />
     <None Include="Assets\svg_test_files\transform_rect.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

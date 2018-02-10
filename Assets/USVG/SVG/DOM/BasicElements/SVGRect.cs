@@ -6,7 +6,9 @@ using UnityEngine;
 
 
 namespace USVG {
-	public class SVGRect : SVGElement {
+	public class SVGRect : SVGGeometry {
+		private const int nSegments = 20;
+
 		private readonly float _x, _y, _width, _height, _rx, _ry;
 
 		public float x { get { return _x; } }
@@ -40,9 +42,18 @@ namespace USVG {
 
 		}
 
-		protected override void GenerateGameObject(Transform parent)
+		public override void Render(SVGElement parent)
 		{
-			Debug.LogError("No Implementado!");
+
+			if(_rx != 0 || _ry != 0){
+				//FIXME: aca tiene que ser un rect rounded
+				vectors_2d = GeometryTools.CreateRoundedRectangle(_x, _y, _width, _height, _rx, _ry, nSegments);
+			} else{
+				vectors_2d = GeometryTools.CreateRectangle(_x, _y, _width, _height);
+			}
+
+			base.Render(parent);
+
 		}
 	}
 }

@@ -17,6 +17,7 @@ namespace USVG {
 			parser.GetElementList(elms);
 			foreach (SVGElement ele in elms) {
 				Debug.Log(ele.ToString());
+				ele.Render(null);
 			}
 		}
 

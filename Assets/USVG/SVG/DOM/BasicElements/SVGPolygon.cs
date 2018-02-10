@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 
 namespace USVG {
-	public class SVGPolygon : SVGElement {
+	public class SVGPolygon : SVGGeometry {
 		private List<Vector2> _listPoints;
 
 		public List<Vector2> listPoints { get { return _listPoints; } }
@@ -42,9 +42,11 @@ namespace USVG {
 		}
 
 
-		protected override void GenerateGameObject(Transform parent)
+		public override void Render(SVGElement parent)
 		{
-			Debug.LogError("No Implementado!");
+			vectors_2d = _listPoints.ToArray();
+
+			base.Render(parent);
 		}
 	}
 

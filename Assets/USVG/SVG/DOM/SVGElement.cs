@@ -9,6 +9,12 @@ namespace USVG {
 		Dictionary<string, string> attrList;
 		SVGTransformList transformlist;
 
+		protected GameObject _gameobject;
+
+		public GameObject gameObject{
+			get { return _gameobject; }
+		}
+
 		protected SVGElement(Dictionary<string, string> _attrList) {
 			attrList = _attrList;
 
@@ -26,7 +32,8 @@ namespace USVG {
 
 		}
 
-		protected abstract void GenerateGameObject(Transform parent);
+
+		public abstract void Render(SVGElement parent);
 	}
 
 }

@@ -5,7 +5,9 @@ using System.Text;
 using UnityEngine;
 
 namespace USVG {
-	public class SVGEllipse : SVGElement {
+	public class SVGEllipse : SVGGeometry {
+		private const int nSegments = 20;
+
 		private float _cx, _cy, _rx, _ry;
 
 		public float cx { get { return _cx; } }
@@ -30,9 +32,11 @@ namespace USVG {
 			_ry = float.Parse(ry);
 		}
 
-		protected override void GenerateGameObject(Transform parent)
+		public override void Render(SVGElement parent)
 		{
-			Debug.LogError("No Implementado!");
+			vectors_2d = GeometryTools.CreateEllipse(_cx, _cy, _rx, _ry, nSegments);
+
+			base.Render(parent);
 		}
 	}
 

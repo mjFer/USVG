@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace USVG {
-	public class SVGPath : SVGElement {
+	public class SVGPath : SVGGeometry {
 
 		public SVGPath(Dictionary<string, string> _attrList) : base(_attrList)
 		{
 
 		}
 
-		protected override void GenerateGameObject(Transform parent)
+		public override void Render(SVGElement parent)
 		{
 			Debug.LogError("No Implementado!");
 		}

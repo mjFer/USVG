@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using USVG;
 
 [ExecuteInEditMode]
 public class ShapesTest : MonoBehaviour {
@@ -27,6 +28,7 @@ public class ShapesTest : MonoBehaviour {
 	public float TipPercentage;
 	public float ToothHeight;
 
+
 	void Start()
 	{
 		// Create Vector2 vertices
@@ -34,23 +36,23 @@ public class ShapesTest : MonoBehaviour {
 
 		switch(tipo){
 			case Tipo.CAPSULE:
-				vertices2D = MJFer.Common.PolygonTools.CreateCapsule(Height, Radius, Edges);
+				vertices2D = USVG.PolygonTools.CreateCapsule(Height, Radius, Edges);
 				break;
 			case Tipo.CIRCLE:
-				vertices2D = MJFer.Common.PolygonTools.CreateCircle(Radius, Edges);
+				vertices2D = PolygonTools.CreateCircle(Radius, Edges);
 				break;
 			case Tipo.ELIPSE:
-				vertices2D = MJFer.Common.PolygonTools.CreateEllipse(Radius, yRadius, Edges);
+				vertices2D = PolygonTools.CreateEllipse(Radius, yRadius, Edges);
 				break;
 			case Tipo.GEAR:
-				vertices2D = MJFer.Common.PolygonTools.CreateGear(Radius, NumberOfTheeth, TipPercentage, ToothHeight);
+				vertices2D = PolygonTools.CreateGear(Radius, NumberOfTheeth, TipPercentage, ToothHeight);
 				break;
 			case Tipo.ROUNDED_RECTANGLE:
-				vertices2D = MJFer.Common.PolygonTools.CreateRoundedRectangle(Height, Width, Radius, yRadius, Edges);
+				vertices2D = PolygonTools.CreateRoundedRectangle(Height, Width, Radius, yRadius, Edges);
 				break;
 			default:
 			case Tipo.RECTANGLE:
-				vertices2D = MJFer.Common.PolygonTools.CreateRectangle(Height, Width);
+				vertices2D = PolygonTools.CreateRectangle(Height, Width);
 				break;
 		}
 

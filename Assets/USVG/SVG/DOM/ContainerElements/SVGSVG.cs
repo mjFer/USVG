@@ -12,11 +12,19 @@ namespace USVG {
 			childs = new List<SVGElement>();
 		}
 
-		protected override void GenerateGameObject(Transform parent)
+		public override void Render(SVGElement parent)
 		{
-			Debug.LogError("No Implementado!");
+			if (_gameobject == null) {
+				_gameobject = new GameObject();
+				if (parent != null)
+					_gameobject.transform.parent = parent.gameObject.transform;
+			}
+			
+			foreach (SVGElement child in childs) {
+				child.Render(this);
+			}
 		}
-		
+
 
 		public void addChild(SVGElement child)
 		{

@@ -9,7 +9,138 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace MJFer.Common {
+namespace USVG 
+{
+	public static class GeometryTools{
+
+		/// <summary>
+		/// Build vertices to represent an axis-aligned box.
+		/// </summary>
+		/// <param name="x">the x origin.</param>
+		/// <param name="y">the y origin.</param>
+		/// <param name="width">the width.</param>
+		/// <param name="height">the height.</param>
+		public static Vector2[] CreateRectangle(float x, float y, float width, float height)
+		{
+			Vector2[] vertices = new Vector2[4];
+			
+			vertices[0] = new Vector2(-width/2 + x, -height/2 + y);
+			vertices[1] = new Vector2(width/2 + x, -height/2 + y);
+			vertices[2] = new Vector2(width/2 + x, height/2 + y);
+			vertices[3] = new Vector2(-width/2 + x, height/2 + y);
+
+			return vertices;
+		}
+
+
+		//Rounded rectangle contributed by Jonathan Smars - jsmars@gmail.com
+		/// <summary>
+		/// Creates a rounded rectangle with the specified width and height.
+		/// </summary>
+		/// <param name="x">The Origin X.</param>
+		/// <param name="y">The Origin Y.</param>
+		/// <param name="width">The width.</param>
+		/// <param name="height">The height.</param>
+		/// <param name="xRadius">The rounding X radius.</param>
+		/// <param name="yRadius">The rounding Y radius.</param>
+		/// <param name="segments">The number of segments to subdivide the edges.</param>
+		/// <returns></returns>
+		public static Vector2[] CreateRoundedRectangle(float x, float y, float width, float height, float xRadius, float yRadius,
+													  int segments)
+		{
+			if (yRadius > height / 2 || xRadius > width / 2)
+				throw new Exception("Rounding amount can't be more than half the height and width respectively.");
+			if (segments < 0)
+				throw new Exception("Segments must be zero or more.");
+
+			//We need at least 8 vertices to create a rounded rectangle
+			//Debug.Assert(Settings.MaxPolygonVertices >= 8);
+
+			List<Vector2> vertices = new List<Vector2>();
+			if (segments == 0) {
+				vertices.Add(new Vector2(width * .5f - xRadius, -height * .5f));
+				vertices.Add(new Vector2(width * .5f, -height * .5f + yRadius));
+
+				vertices.Add(new Vector2(width * .5f, height * .5f - yRadius));
+				vertices.Add(new Vector2(width * .5f - xRadius, height * .5f));
+
+				vertices.Add(new Vector2(-width * .5f + xRadius, height * .5f));
+				vertices.Add(new Vector2(-width * .5f, height * .5f - yRadius));
+
+				vertices.Add(new Vector2(-width * .5f, -height * .5f + yRadius));
+				vertices.Add(new Vector2(-width * .5f + xRadius, -height * .5f));
+			} else {
+				int numberOfEdges = (segments * 4 + 8);
+
+				float stepSize = Mathf.PI * 2 / (numberOfEdges - 4);
+				int perPhase = numberOfEdges / 4;
+
+				Vector2 posOffset = new Vector2(width / 2 - xRadius, height / 2 - yRadius);
+				vertices.Add(posOffset + new Vector2(xRadius, -yRadius + yRadius));
+				short phase = 0;
+				for (int i = 1; i < numberOfEdges; i++) {
+					if (i - perPhase == 0 || i - perPhase * 3 == 0) {
+						posOffset.x *= -1;
+						phase--;
+					} else if (i - perPhase * 2 == 0) {
+						posOffset.y *= -1;
+						phase--;
+					}
+
+					vertices.Add(posOffset + new Vector2(xRadius * (float)Math.Cos(stepSize * -(i + phase)),
+														 -yRadius * (float)Math.Sin(stepSize * -(i + phase))));
+				}
+			}
+
+			//move to origin pos
+			for(int i=0; i<vertices.Count; i++){
+				vertices[i] += new Vector2(x, y);
+			}
+
+			return vertices.ToArray();
+		}
+
+
+
+		/// <summary>
+		/// Creates a circle with the specified radius and number of edges.
+		/// </summary>
+		/// <param name="radius">The radius.</param>
+		/// <param name="numberOfEdges">The number of edges. The more edges, the more it resembles a circle</param>
+		/// <returns></returns>
+		public static Vector2[] CreateCircle(float x, float y, float radius, int numberOfEdges)
+		{
+			return CreateEllipse( x, y, radius, radius, numberOfEdges);
+		}
+
+		/// <summary>
+		/// Creates a ellipse with the specified width, height and number of edges.
+		/// </summary>
+		/// <param name="x">x Origin.</param>
+		/// <param name="y">y Origin.</param>
+		/// <param name="xRadius">Width of the ellipse.</param>
+		/// <param name="yRadius">Height of the ellipse.</param>
+		/// <param name="numberOfEdges">The number of edges. The more edges, the more it resembles an ellipse</param>
+		/// <returns></returns>
+		public static Vector2[] CreateEllipse(float x, float y, float xRadius, float yRadius, int numberOfEdges)
+		{
+			List<Vector2> vertices = new List<Vector2>();
+
+			float stepSize = Mathf.PI * 2 / numberOfEdges;
+
+			vertices.Add(new Vector2(xRadius + x, 0 + y));
+			for (int i = numberOfEdges - 1; i > 0; --i)
+				vertices.Add(new Vector2(xRadius * (float)Math.Cos(stepSize * i) + x,
+										 -yRadius * (float)Math.Sin(stepSize * i) + y ));
+
+			return vertices.ToArray();
+		}
+
+
+
+	}
+
+
 	public static class PolygonTools {
 		/// <summary>
 		/// Build vertices to represent an axis-aligned box.
@@ -50,7 +181,6 @@ namespace MJFer.Common {
 		}
 
 		//Rounded rectangle contributed by Jonathan Smars - jsmars@gmail.com
-
 		/// <summary>
 		/// Creates a rounded rectangle with the specified width and height.
 		/// </summary>
