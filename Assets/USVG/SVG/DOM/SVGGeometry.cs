@@ -38,7 +38,6 @@ namespace USVG {
 				Vector3[] vertices = new Vector3[vectors_2d.Length];
 				for (int i = 0; i < vertices.Length; i++) {
 					vertices[i] = new Vector3(vectors_2d[i].x, vectors_2d[i].y, 0);
-					Debug.Log("i" + i + " vertex: " + vectors_2d[i]);
 				}
 
 				// Create the mesh

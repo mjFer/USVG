@@ -37,6 +37,18 @@ namespace USVG {
 		}
 
 
+		/** Path Parsing Methods */
+		public static List<KeyValuePair<string, string>> StringPathSep(string attrs)
+		{
+			List<KeyValuePair<string, string>> dic = new List<KeyValuePair<string, string>>();
+			string pattrn = @"([a-zA-Z])([0-9\.\,\ ]*)";
+			foreach (Match match in Regex.Matches(attrs, pattrn)) {
+				dic.Add(new KeyValuePair<string, string>(match.Groups[1].Value, match.Groups[2].Value));
+			}
+			return dic;
+		}
+
+
 
 	}
 
