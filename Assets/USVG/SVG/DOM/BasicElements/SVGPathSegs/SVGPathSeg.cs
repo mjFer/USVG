@@ -8,48 +8,25 @@ public abstract class SVGPathSeg{
 		SVG_PATH_RELATIVE,
 		SVG_PATH_ABSOLUTE
 	};
-	PathCoordType _coord_type;
+	protected PathCoordType _coord_type;
+	protected SVGPathSeg _prevSeg;
 
-	public SVGPathSeg(bool isRel){
+	public SVGPathSeg(bool isRel, SVGPathSeg prevSeg){
 		if (isRel) {
 			_coord_type = PathCoordType.SVG_PATH_RELATIVE;
 		}else{
 			_coord_type = PathCoordType.SVG_PATH_ABSOLUTE;
 		}
+		_prevSeg = prevSeg;
+
 	}
 
-	public abstract Vector2 GetLenght();
+	public abstract float GetLenght();
 
-	public abstract Vector2 GetPointAtLenght(int nSegments);
+	public abstract Vector2[] GetPoints(int nSegments);
+
+	public abstract Vector2 getCursor();
+
 
 }
 
-
-//SVGPathElement.createSVGPathSegClosePath()
-
-//SVGPathElement.createSVGPathSegMovetoAbs()
-//SVGPathElement.createSVGPathSegMovetoRel()
-
-//SVGPathElement.createSVGPathSegLinetoAbs()
-//SVGPathElement.createSVGPathSegLinetoRel()
-
-//SVGPathElement.createSVGPathSegCurvetoCubicAbs()
-//SVGPathElement.createSVGPathSegCurvetoCubicRel()
-
-//SVGPathElement.createSVGPathSegCurvetoQuadraticAbs()
-//SVGPathElement.createSVGPathSegCurvetoQuadraticRel()
-
-//SVGPathElement.createSVGPathSegArcAbs()
-//SVGPathElement.createSVGPathSegArcRel()
-
-//SVGPathElement.createSVGPathSegLinetoHorizontalAbs()
-//SVGPathElement.createSVGPathSegLinetoHorizontalRel()
-
-//SVGPathElement.createSVGPathSegLinetoVerticalAbs()
-//SVGPathElement.createSVGPathSegLinetoVerticalRel()
-
-//SVGPathElement.createSVGPathSegCurvetoCubicSmoothAbs()
-//SVGPathElement.createSVGPathSegCurvetoCubicSmoothRel()
-
-//SVGPathElement.createSVGPathSegCurvetoQuadraticSmoothAbs()
-//SVGPathElement.createSVGPathSegCurvetoQuadraticSmoothRel()

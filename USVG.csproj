@@ -87,10 +87,11 @@
     <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGLine.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPath.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSeg.cs" />
+    <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSegClose.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSegCubicBezShortTo.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSegCubicBezTo.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSegLineTo.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSegMoveTo.cs" />
+    <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSegMoveto.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSegQuadBezShortTo.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSegQuadBezTo.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPolygon.cs" />

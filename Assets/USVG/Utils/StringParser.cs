@@ -41,11 +41,27 @@ namespace USVG {
 		public static List<KeyValuePair<string, string>> StringPathSep(string attrs)
 		{
 			List<KeyValuePair<string, string>> dic = new List<KeyValuePair<string, string>>();
-			string pattrn = @"([a-zA-Z])([0-9\.\,\ ]*)";
+			string pattrn = @"([a-zA-Z])([0-9\.\,\ \-]*)";
 			foreach (Match match in Regex.Matches(attrs, pattrn)) {
 				dic.Add(new KeyValuePair<string, string>(match.Groups[1].Value, match.Groups[2].Value));
 			}
 			return dic;
+		}
+
+		public static float[] StringPathValues(string attrs)
+		{
+			List<string> s_vals = new List<string>();
+			string pattrn = @"(-?\d*\.{0,1}\d+)";
+			foreach (Match match in Regex.Matches(attrs, pattrn)) {
+				s_vals.Add(match.Groups[0].Value);
+			}
+
+			float[] f_vals = new float[s_vals.Count];
+
+			for (int it = 0; it < s_vals.Count; it++) {
+				float.TryParse(s_vals[it], out f_vals[it]);
+			}
+			return f_vals;
 		}
 
 
