@@ -33,7 +33,7 @@ namespace USVG {
 						transformlist.ParseAttributes(attr.Value);
 						break;
 					default:
-						Debug.Log("Attributo no implementado: " + attr.Key);
+						//Debug.Log("Attributo no implementado: " + attr.Key);
 						break;
 				}
 			}
@@ -41,7 +41,7 @@ namespace USVG {
 		}
 
 
-		public abstract void Render(SVGElement parent);
+		public abstract void Render(SVGElement parent, Material baseMaterial);
 	}
 
 }

@@ -29,7 +29,7 @@ namespace USVG {
 
 		}
 
-		public override void Render(SVGElement parent)
+		public override void Render(SVGElement parent, Material baseMaterial)
 		{
 			int i = 0;
 			Paths = new List<GenPath>();
@@ -57,14 +57,16 @@ namespace USVG {
 				generatedPoints.Clear();
 			}
 
-			//foreach (Vector2 vec in generatedPoints) {
-			//	Debug.Log(name + "vector:" + vec);
+			if(Paths.Count == 0){
+				Debug.LogWarning("Un path sin segmentos?");
+				return;
+			}
+			vectors_2d = Paths[0].points;
+			//foreach(Vector2 vec in vectors_2d){
+			//	Debug.Log(name + "-Vector:" + vec);
 			//}
 
-
-			vectors_2d = Paths[0].points;
-
-			base.Render(parent);
+			base.Render(parent, baseMaterial);
 		}
 
 

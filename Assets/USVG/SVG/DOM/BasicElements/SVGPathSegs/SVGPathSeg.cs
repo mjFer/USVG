@@ -11,6 +11,9 @@ public abstract class SVGPathSeg{
 	protected PathCoordType _coord_type;
 	protected SVGPathSeg _prevSeg;
 
+	protected bool endCursorCalculated;
+	protected Vector2 endCursor;
+
 	public SVGPathSeg(bool isRel, SVGPathSeg prevSeg){
 		if (isRel) {
 			_coord_type = PathCoordType.SVG_PATH_RELATIVE;

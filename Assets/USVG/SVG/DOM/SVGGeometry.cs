@@ -12,6 +12,7 @@ namespace USVG {
 
 		protected Mesh msh;
 		protected MeshFilter filter;
+		protected Renderer renderer;
 
 
 		protected SVGGeometry(Dictionary<string, string> _attrList) : base(_attrList)
@@ -20,7 +21,7 @@ namespace USVG {
 		}
 
 
-		public override void Render(SVGElement parent)
+		public override void Render(SVGElement parent, Material baseMaterial)
 		{
 			if (_gameobject == null) {
 				_gameobject = new GameObject(name);
@@ -59,6 +60,12 @@ namespace USVG {
 					filter = gameObject.AddComponent(typeof(MeshFilter)) as MeshFilter;
 
 				filter.mesh = msh;
+
+				if (renderer == null) renderer = gameObject.GetComponent<Renderer>();
+				renderer.material = baseMaterial;
+
+				renderer.material.color = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
+
 			}
 		}
 	}

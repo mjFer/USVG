@@ -5,6 +5,7 @@ using UnityEngine;
 namespace USVG {
 	public class SVGLoader : MonoBehaviour {
 		public TextAsset svgAsset;
+		public Material baseMaterial;
 
 		SVGParser parser;
 		List<SVGElement> elms;
@@ -17,7 +18,7 @@ namespace USVG {
 			parser.GetElementList(elms);
 			foreach (SVGElement ele in elms) {
 				Debug.Log(ele.ToString());
-				ele.Render(null);
+				ele.Render(null, baseMaterial);
 			}
 		}
 

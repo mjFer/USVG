@@ -36,11 +36,11 @@ namespace USVG {
 		}
 
 
-		public override void Render(SVGElement parent)
+		public override void Render(SVGElement parent, Material baseMaterial)
 		{
 			vectors_2d = _listPoints.ToArray();
 
-			base.Render(parent);
+			base.Render(parent, baseMaterial);
 		}
 	}
 

@@ -12,7 +12,7 @@ namespace USVG {
 			childs = new List<SVGElement>();
 		}
 
-		public override void Render(SVGElement parent)
+		public override void Render(SVGElement parent, Material baseMaterial)
 		{
 			if (_gameobject == null) {
 				_gameobject = new GameObject(name);
@@ -21,7 +21,7 @@ namespace USVG {
 			}
 			
 			foreach (SVGElement child in childs) {
-				child.Render(this);
+				child.Render(this, baseMaterial);
 			}
 		}
 

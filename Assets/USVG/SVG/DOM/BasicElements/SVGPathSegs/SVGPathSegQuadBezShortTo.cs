@@ -11,13 +11,21 @@ public class SVGPathSegQuadBezShortTo : SVGPathSegQuadBezTo {
 
 		if (prevSeg.GetType() == typeof(SVGPathSegQuadBezShortTo)) {
 			SVGPathSegQuadBezShortTo prev = _prevSeg as SVGPathSegQuadBezShortTo;
-			_x1 = prev.X1;
-			_y1 = prev.Y1;
-		}else if (prevSeg.GetType() == typeof(SVGPathSegQuadBezTo)){
+			//_x1 = -prev.X1;
+			//_y1 = -prev.Y1;
+			_x1 = prev.getCursor().x + prev.dX1;
+			_y1 = prev.getCursor().y - prev.dY1;
+		} else if (prevSeg.GetType() == typeof(SVGPathSegQuadBezTo)) {
 			SVGPathSegQuadBezTo prev = _prevSeg as SVGPathSegQuadBezTo;
-			_x1 = prev.X1;
-			_y1 = prev.Y1;
+			//_x1 = -prev.X1;
+			//_y1 = -prev.Y1;
+			_x1 = prev.getCursor().x + prev.dX1;
+			_y1 = prev.getCursor().y - prev.dY1;
 		}
+		// else {
+		//	_x1 = 2 * prevSeg.getCursor().x;
+		//	_y1 = 2 * prevSeg.getCursor().y;
+		//}
 		
 
 	}

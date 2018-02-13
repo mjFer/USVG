@@ -17,8 +17,22 @@ public class SVGPathSegCubicBezTo : SVGPathSeg {
 	protected float _x2, _y2;
 	protected float _x, _y;
 
-	public float X2 {get {return _x2;}}
-	public float Y2 { get { return _y2; } }
+	public float dX2 {
+		get {
+			if (_coord_type == PathCoordType.SVG_PATH_ABSOLUTE)
+				return _x2 - _prevSeg.getCursor().x;
+			else
+				return _x2;
+		}
+	}
+	public float dY2 {
+		get {
+			if (_coord_type == PathCoordType.SVG_PATH_ABSOLUTE)
+				return _y2 - _prevSeg.getCursor().y;
+			else
+				return _y2;
+		}
+	}
 
 
 	public SVGPathSegCubicBezTo(float x1, float y1, float x2, float y2, float x, float y, bool isRel, SVGPathSeg prevSeg) : base(isRel, prevSeg){
@@ -91,10 +105,14 @@ public class SVGPathSegCubicBezTo : SVGPathSeg {
 
 	public override Vector2 getCursor()
 	{
-		if (_coord_type == PathCoordType.SVG_PATH_ABSOLUTE)
-			return new Vector2(_x, _y);
-		else
-			return new Vector2(_x + _prevSeg.getCursor().x, _y + _prevSeg.getCursor().y);
+		if (!endCursorCalculated) {
+			if (_coord_type == PathCoordType.SVG_PATH_ABSOLUTE)
+				endCursor = new Vector2(_x, _y);
+			else
+				endCursor = new Vector2(_x + _prevSeg.getCursor().x, _y + _prevSeg.getCursor().y);
+			endCursorCalculated = true;
+		}
+		return endCursor;
 	}
 }
 

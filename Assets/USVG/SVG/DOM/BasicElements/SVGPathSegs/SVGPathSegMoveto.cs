@@ -15,14 +15,18 @@ public class SVGPathSegMoveTo : SVGPathSeg {
 
 	public override Vector2 getCursor()
 	{
-		Vector2 inicial = new Vector2();
-		if(_coord_type == PathCoordType.SVG_PATH_ABSOLUTE){
-			return new Vector2(_x, _y);	
-		}else{
-			if (_prevSeg != null)
-				inicial += _prevSeg.getCursor();
-			return new Vector2(_x + inicial.x, _y + inicial.y);
+		if (!endCursorCalculated) {
+			Vector2 inicial = new Vector2();
+			if (_coord_type == PathCoordType.SVG_PATH_ABSOLUTE) {
+				endCursor = new Vector2(_x, _y);
+			} else {
+				if (_prevSeg != null)
+					inicial += _prevSeg.getCursor();
+				endCursor = new Vector2(_x + inicial.x, _y + inicial.y);
+			}
+			endCursorCalculated = true;
 		}
+		return endCursor;
 	}
 
 	public override float GetLenght()

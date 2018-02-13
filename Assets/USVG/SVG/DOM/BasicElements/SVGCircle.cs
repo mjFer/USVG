@@ -28,11 +28,11 @@ namespace USVG {
 			_r = float.Parse(r);
 		}
 
-		public override void Render(SVGElement parent)
+		public override void Render(SVGElement parent, Material baseMaterial)
 		{
 			vectors_2d = GeometryTools.CreateCircle(_cx, _cy, _r, nSegments);
 		
-			base.Render(parent);
+			base.Render(parent, baseMaterial);
 		}
 	}
 

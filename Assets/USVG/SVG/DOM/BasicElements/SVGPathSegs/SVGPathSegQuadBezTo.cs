@@ -19,15 +19,33 @@ public class SVGPathSegQuadBezTo : SVGPathSeg {
 		_y = y;
 	}
 
-	public float X1 {get {return _x1;}}
-	public float Y1 {get {return _y1;}}
+	public float dX1 {
+		get {
+			if (_coord_type == PathCoordType.SVG_PATH_ABSOLUTE)
+				return _x1 - _prevSeg.getCursor().x;
+			else
+				return _x1;
+		}
+	}
+	public float dY1 {
+		get {
+			if (_coord_type == PathCoordType.SVG_PATH_ABSOLUTE)
+				return _y1 - _prevSeg.getCursor().y;
+			else
+				return _y1;
+		}
+	}
 
 	public override Vector2 getCursor()
 	{
-		if (_coord_type == PathCoordType.SVG_PATH_ABSOLUTE)
-			return new Vector2(_x, _y);
-		else
-			return new Vector2(_x + _prevSeg.getCursor().x, _y + _prevSeg.getCursor().y);
+		if (!endCursorCalculated) {
+			if (_coord_type == PathCoordType.SVG_PATH_ABSOLUTE)
+				endCursor = new Vector2(_x, _y);
+			else
+				endCursor = new Vector2(_x + _prevSeg.getCursor().x, _y + _prevSeg.getCursor().y);
+			endCursorCalculated = true;
+		}
+		return endCursor;
 	}
 
 	public override float GetLenght()

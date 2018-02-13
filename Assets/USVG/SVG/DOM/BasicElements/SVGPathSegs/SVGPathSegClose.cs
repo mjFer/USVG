@@ -10,10 +10,15 @@ public class SVGPathSegClose : SVGPathSeg {
 	}
 
 	public override Vector2 getCursor()
-	{	
-		if (_prevSeg != null)
-			return _prevSeg.getCursor();
-		return Vector2.zero;	
+	{
+		if (!endCursorCalculated){ 
+			if (_prevSeg != null)
+				endCursor = _prevSeg.getCursor();
+			else
+				endCursor = Vector2.zero;
+			endCursorCalculated = true;
+		}
+		return endCursor;	
 	}
 
 	public override float GetLenght()

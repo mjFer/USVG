@@ -42,7 +42,7 @@ namespace USVG {
 
 		}
 
-		public override void Render(SVGElement parent)
+		public override void Render(SVGElement parent, Material baseMaterial)
 		{
 
 			if(_rx != 0 || _ry != 0){
@@ -52,7 +52,7 @@ namespace USVG {
 				vectors_2d = GeometryTools.CreateRectangle(_x, _y, _width, _height);
 			}
 
-			base.Render(parent);
+			base.Render(parent, baseMaterial);
 
 		}
 	}
