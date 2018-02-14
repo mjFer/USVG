@@ -38,7 +38,15 @@ namespace USVG {
 			generatedPoints = new List<Vector2>();
 			foreach(SVGPathSeg seg in segList){
 				i++;
-				Vector2[] newPoints = seg.GetPoints(5);
+				Vector2[] newPoints = seg.GetPoints(20);
+
+				if (generatedPoints.Count > 0 && newPoints != null) {
+					if (newPoints[0] == generatedPoints[generatedPoints.Count - 1]) {
+						generatedPoints.RemoveAt(generatedPoints.Count - 1);
+						Debug.Log("Remuevo duplicado!");
+					}
+				}
+
 				if(newPoints != null) generatedPoints.AddRange(newPoints);
 
 				if(seg.GetType() == typeof(SVGPathSegClose)){
