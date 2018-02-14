@@ -83,6 +83,7 @@
     <Compile Include="Assets\USVG\Geometry\Triangulator.cs" />
     <Compile Include="Assets\USVG\Geometry\TriangulatorTester.cs" />
     <Compile Include="Assets\USVG\MeshPointDebug.cs" />
+    <Compile Include="Assets\USVG\SVG\DOM\Attributes\SVGColor.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGCircle.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGEllipse.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGLine.cs" />
@@ -118,6 +119,7 @@
     <None Include="Assets\svg_test_files\homer-simpson.txt" />
     <None Include="Assets\svg_test_files\homer-simpsonIncomp.txt" />
     <None Include="Assets\svg_test_files\myspace.txt" />
+    <None Include="Assets\svg_test_files\piramids.txt" />
     <None Include="Assets\svg_test_files\rects.txt" />
     <None Include="Assets\svg_test_files\shapes.txt" />
     <None Include="Assets\svg_test_files\transform_rect.txt" />

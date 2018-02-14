@@ -64,6 +64,11 @@ namespace USVG {
 			return f_vals;
 		}
 
+		public static float StringAttrFloat(string attr){
+			float outVal = 0; 
+			float.TryParse(attr, out outVal);
+			return outVal ;
+		}
 
 
 	}
