@@ -15,6 +15,8 @@ namespace USVG {
 		List<Vector2> generatedPoints;
 		List<GenPath> Paths;
 
+		List<Mesh> meshes;
+
 		public SVGPath(Dictionary<string, string> _attrList) : base(_attrList)
 		{
 			segList = new List<SVGPathSeg>();
@@ -36,7 +38,7 @@ namespace USVG {
 			generatedPoints = new List<Vector2>();
 			foreach(SVGPathSeg seg in segList){
 				i++;
-				Vector2[] newPoints = seg.GetPoints(20);
+				Vector2[] newPoints = seg.GetPoints(5);
 				if(newPoints != null) generatedPoints.AddRange(newPoints);
 
 				if(seg.GetType() == typeof(SVGPathSegClose)){
@@ -66,7 +68,62 @@ namespace USVG {
 			//	Debug.Log(name + "-Vector:" + vec);
 			//}
 
-			base.Render(parent, baseMaterial);
+			//base.Render(parent, baseMaterial);
+
+			if (_gameobject == null) {
+				_gameobject = new GameObject(name);
+				_gameobject.AddComponent(typeof(MeshRenderer));
+				if (parent != null)
+					_gameobject.transform.parent = parent.gameObject.transform;
+			}
+
+
+			GenerateMeshes();
+
+			if (filter == null) filter = gameObject.GetComponent<MeshFilter>();
+			if (filter == null)
+				filter = gameObject.AddComponent(typeof(MeshFilter)) as MeshFilter;
+
+			filter.mesh = msh;
+
+			if (renderer == null) renderer = gameObject.GetComponent<Renderer>();
+			renderer.material = baseMaterial;
+
+			renderer.material.color = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
+		}
+
+		private void GenerateMeshes(){
+			if (msh == null) msh = new Mesh();
+			CombineInstance[] combine = new CombineInstance[Paths.Count];
+			int it = 0;
+			foreach (GenPath path in Paths) {
+				// Use the triangulator to get indices for creating triangles
+				Triangulator tr = new Triangulator(path.points);
+				int[] indices = tr.Triangulate();
+
+				// Create the Vector3 vertices
+				Vector3[] vertices = new Vector3[path.points.Length];
+				for (int i = 0; i < vertices.Length; i++) {
+					vertices[i] = new Vector3(path.points[i].x, path.points[i].y, 0);
+				}
+
+				// Create the mesh
+				Mesh _msh = new Mesh();
+				_msh.vertices = vertices;
+				_msh.triangles = indices;
+
+				//Normals
+				Vector3[] normals = new Vector3[path.points.Length];
+				for (int i = 0; i < normals.Length; i++) {
+					normals[i] = new Vector3(0, 0, 1);
+				}
+				_msh.RecalculateBounds();
+
+				combine[it].mesh = _msh;
+				it++;
+				
+			}
+			msh.CombineMeshes(combine, false, false, false);
 		}
 
 

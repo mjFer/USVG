@@ -61,19 +61,27 @@ public class SVGPathSegCubicBezTo : SVGPathSeg {
 		float tSquared, tCubed;
 		Vector2 result;
 
+		//TODO: hacer estos calculos una sola vez para optimizar
 		Vector2 cursor = _prevSeg.getCursor();
 		Vector2 final_point = new Vector2(_x, _y);
 		if (_coord_type == PathCoordType.SVG_PATH_RELATIVE)
 			final_point += cursor;
+		Vector2 cp1 = new Vector2(_x1, _y1);
+		if (_coord_type == PathCoordType.SVG_PATH_RELATIVE)
+			cp1 += cursor;
+		Vector2 cp2 = new Vector2(_x2, _y2);
+		if (_coord_type == PathCoordType.SVG_PATH_RELATIVE)
+			cp2 += cursor;
+
 
 		/* cálculo de los coeficientes polinomiales */
 
-		cx = 3.0f * (_x1 - cursor.x);
-		bx = 3.0f * (_x2 - _x1) - cx;
+		cx = 3.0f * (cp1.x - cursor.x);
+		bx = 3.0f * (cp2.x - cp1.x) - cx;
 		ax = final_point.x - cursor.x - cx - bx;
 
-		cy = 3.0f * (_y1 - cursor.y);
-		by = 3.0f * (_y2 - _y1) - cy;
+		cy = 3.0f * (cp1.y - cursor.y);
+		by = 3.0f * (cp2.y - cp1.y) - cy;
 		ay = final_point.y - cursor.y - cy - by;
 
 		/* calculate the curve point at parameter value t */

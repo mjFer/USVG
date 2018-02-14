@@ -78,12 +78,16 @@ public class SVGPathSegQuadBezTo : SVGPathSeg {
 		float yy;
 		Vector2 cursor = _prevSeg.getCursor();
 
+		//TODO: hacer estos calculos una sola vez para optimizar
 		Vector2 p_final = new Vector2(_x, _y);
 		if (_coord_type == PathCoordType.SVG_PATH_RELATIVE)
 			p_final += cursor;
+		Vector2 cp1 = new Vector2(_x1, _y1);
+		if (_coord_type == PathCoordType.SVG_PATH_RELATIVE)
+			cp1 += cursor;
 
-		xx = (1 - t) * (1 - t) * cursor.x + 2 * (1 - t) * t * _x1 + t * t * _x;
-		yy = (1 - t) * (1 - t) * cursor.y + 2 * (1 - t) * t * _y1 + t * t * _y;
+		xx = (1 - t) * (1 - t) * cursor.x + 2 * (1 - t) * t * cp1.x + t * t * _x;
+		yy = (1 - t) * (1 - t) * cursor.y + 2 * (1 - t) * t * cp1.y + t * t * _y;
 
 		return new Vector2(xx, yy);
 	}
