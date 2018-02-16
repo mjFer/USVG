@@ -19,18 +19,18 @@ public class SVGPathSegCubicBezTo : SVGPathSeg {
 
 	public float dX2 {
 		get {
-			if (_coord_type == PathCoordType.SVG_PATH_ABSOLUTE)
-				return _x2 - _prevSeg.getCursor().x;
-			else
-				return _x2;
+			//if (_coord_type == PathCoordType.SVG_PATH_ABSOLUTE)
+			//	return _x2 - _x;
+			//else
+				return _x2 - _x ;
 		}
 	}
 	public float dY2 {
 		get {
-			if (_coord_type == PathCoordType.SVG_PATH_ABSOLUTE)
-				return _y2 - _prevSeg.getCursor().y;
-			else
-				return _y2;
+			//if (_coord_type == PathCoordType.SVG_PATH_ABSOLUTE)
+			//	return _y2 - _y;
+			//else
+				return _y2 - _y ;
 		}
 	}
 

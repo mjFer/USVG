@@ -10,10 +10,30 @@ public class SVGPathSegLineTo : SVGPathSeg {
 
 	Vector2[] _points = null;
 	
+	public enum LineToType{
+		NORMAL,
+		VERTICAL,
+		HORIZONTAL
+	};
+	LineToType lineType;
 
-	public SVGPathSegLineTo(float x, float y, bool isRel, SVGPathSeg prevPath) : base(isRel, prevPath){
+	public SVGPathSegLineTo(float x, float y,  bool isRel, SVGPathSeg prevPath, LineToType type= LineToType.NORMAL) : base(isRel, prevPath){
 		_x = x;
 		_y = y;
+		lineType = type;
+		switch (type){
+			case LineToType.NORMAL:
+				break;
+			case LineToType.HORIZONTAL:
+				if(_coord_type == PathCoordType.SVG_PATH_ABSOLUTE)
+					_y = prevPath.getCursor().y;
+				break;
+			case LineToType.VERTICAL:
+				if (_coord_type == PathCoordType.SVG_PATH_ABSOLUTE)
+					_x = prevPath.getCursor().x;
+				break;
+		}
+
 	}
 
 	public override float GetLenght()

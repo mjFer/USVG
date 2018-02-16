@@ -67,6 +67,7 @@ namespace USVG {
 				//renderer.material.color = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
 				if (fillColor != null){
 					renderer.material.color = new Color(fillColor.R, fillColor.G, fillColor.B, fillOpacity);
+					renderer.material.renderQueue = 3000 + element_number;
 				}
 
 

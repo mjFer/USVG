@@ -72,9 +72,9 @@ namespace USVG {
 				return;
 			}
 			vectors_2d = Paths[0].points;
-			//foreach(Vector2 vec in vectors_2d){
-			//	Debug.Log(name + "-Vector:" + vec);
-			//}
+			foreach (Vector2 vec in vectors_2d) {
+				Debug.Log(name + "-Vector:" + vec);
+			}
 
 			//base.Render(parent, baseMaterial);
 
@@ -100,6 +100,7 @@ namespace USVG {
 			//renderer.material.color = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
 			if (fillColor != null) {
 				renderer.material.color = new Color(fillColor.R, fillColor.G, fillColor.B, fillOpacity);
+				renderer.material.renderQueue = 3000 + element_number;
 			}
 		}
 
@@ -156,11 +157,11 @@ namespace USVG {
 					break;
 				case 'H':
 				case 'h':
-					segList.Add(new SVGPathSegLineTo(vals[0], 0, type == 'h' ? true : false, last));
+					segList.Add(new SVGPathSegLineTo(vals[0], 0, type == 'h' ? true : false, last, SVGPathSegLineTo.LineToType.HORIZONTAL));
 					break;
 				case 'V':
 				case 'v':
-					segList.Add(new SVGPathSegLineTo(0, vals[0], type == 'v' ? true : false, last));
+					segList.Add(new SVGPathSegLineTo(0, vals[0], type == 'v' ? true : false, last, SVGPathSegLineTo.LineToType.VERTICAL));
 					break;
 				case 'C':
 				case 'c':

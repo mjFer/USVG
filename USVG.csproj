@@ -114,10 +114,14 @@
     <Compile Include="Assets\USVG\Utils\StringParser.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\svg_test_files\Cuadra1(ConTaller) copia.txt" />
     <None Include="Assets\svg_test_files\bezierCurve.txt" />
+    <None Include="Assets\svg_test_files\bezier_c_s_curve.txt" />
     <None Include="Assets\svg_test_files\compass.txt" />
     <None Include="Assets\svg_test_files\homer-simpson.txt" />
     <None Include="Assets\svg_test_files\homer-simpsonIncomp.txt" />
+    <None Include="Assets\svg_test_files\moto_lucas.txt" />
+    <None Include="Assets\svg_test_files\moto_lucas_reduc.txt" />
     <None Include="Assets\svg_test_files\myspace.txt" />
     <None Include="Assets\svg_test_files\piramids.txt" />
     <None Include="Assets\svg_test_files\rects.txt" />

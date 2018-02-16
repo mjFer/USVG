@@ -13,14 +13,22 @@ public class SVGPathSegQuadBezShortTo : SVGPathSegQuadBezTo {
 			SVGPathSegQuadBezShortTo prev = _prevSeg as SVGPathSegQuadBezShortTo;
 			//_x1 = -prev.X1;
 			//_y1 = -prev.Y1;
-			_x1 = prev.getCursor().x + prev.dX1;
+			_x1 = prev.getCursor().x - prev.dX1;
 			_y1 = prev.getCursor().y - prev.dY1;
+			if (_coord_type == PathCoordType.SVG_PATH_RELATIVE) {
+				_x1 -= prev.getCursor().x;
+				_y1 -= prev.getCursor().y;
+			}
 		} else if (prevSeg.GetType() == typeof(SVGPathSegQuadBezTo)) {
 			SVGPathSegQuadBezTo prev = _prevSeg as SVGPathSegQuadBezTo;
 			//_x1 = -prev.X1;
 			//_y1 = -prev.Y1;
-			_x1 = prev.getCursor().x + prev.dX1;
+			_x1 = prev.getCursor().x - prev.dX1;
 			_y1 = prev.getCursor().y - prev.dY1;
+			if (_coord_type == PathCoordType.SVG_PATH_RELATIVE) {
+				_x1 -= prev.getCursor().x;
+				_y1 -= prev.getCursor().y;
+			}
 		}
 		// else {
 		//	_x1 = 2 * prevSeg.getCursor().x;

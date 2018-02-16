@@ -12,12 +12,20 @@ public class SVGPathSegCubicBezShortTo : SVGPathSegCubicBezTo {
 
 		if (prevSeg.GetType() == typeof(SVGPathSegCubicBezShortTo)) {
 			SVGPathSegCubicBezShortTo prev = _prevSeg as SVGPathSegCubicBezShortTo;
-			_x1 = prev.getCursor().x + prev.dX2;
+			_x1 = prev.getCursor().x - prev.dX2;
 			_y1 = prev.getCursor().y - prev.dY2;
+			if (_coord_type == PathCoordType.SVG_PATH_RELATIVE) {
+				_x1 -= prev.getCursor().x;
+				_y1 -= prev.getCursor().y;
+			}
 		} else if (prevSeg.GetType() == typeof(SVGPathSegCubicBezTo)) {
 			SVGPathSegCubicBezTo prev = _prevSeg as SVGPathSegCubicBezTo;
-			_x1 = prev.getCursor().x + prev.dX2;
+			_x1 = prev.getCursor().x - prev.dX2;
 			_y1 = prev.getCursor().y - prev.dY2;
+			if (_coord_type == PathCoordType.SVG_PATH_RELATIVE) {
+				_x1 -= prev.getCursor().x;
+				_y1 -= prev.getCursor().y;
+			}
 		}
 		//else{
 		//	_x1 = 2 * prevSeg.getCursor().x;

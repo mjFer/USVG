@@ -21,18 +21,18 @@ public class SVGPathSegQuadBezTo : SVGPathSeg {
 
 	public float dX1 {
 		get {
-			if (_coord_type == PathCoordType.SVG_PATH_ABSOLUTE)
-				return _x1 - _prevSeg.getCursor().x;
-			else
-				return _x1;
+			//if (_coord_type == PathCoordType.SVG_PATH_ABSOLUTE)
+			//	return _x1 - _prevSeg.getCursor().x;
+			//else
+				return _x1 - _x;
 		}
 	}
 	public float dY1 {
 		get {
-			if (_coord_type == PathCoordType.SVG_PATH_ABSOLUTE)
-				return _y1 - _prevSeg.getCursor().y;
-			else
-				return _y1;
+			//if (_coord_type == PathCoordType.SVG_PATH_ABSOLUTE)
+			//	return _y1 - _prevSeg.getCursor().y;
+			//else
+				return _y1 - _y;
 		}
 	}
 

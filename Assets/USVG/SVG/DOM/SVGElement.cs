@@ -9,6 +9,7 @@ namespace USVG {
 		Dictionary<string, string> attrList;
 		SVGTransformList transformlist;
 		protected string name;
+		protected int element_number;
 		protected SVGColor fillColor;
 		protected SVGColor strokeColor;
 		protected float fillOpacity;
@@ -26,7 +27,7 @@ namespace USVG {
 
 		protected SVGElement(Dictionary<string, string> _attrList) {
 			attrList = _attrList;
-
+			
 			fillColor = null;
 			strokeColor = null;
 			fillOpacity = 1.0f;
@@ -35,11 +36,11 @@ namespace USVG {
 			hasFill = true;
 			hasStroke = false;
 			visible = true;
-
-			if(attrList.ContainsKey("id")){
+			element_number = SVGGenerals.getElementId();
+			if (attrList.ContainsKey("id")){
 				name = attrList["id"];
 			}else{
-				name = this.ToString() + "-" + SVGGenerals.getElementId();
+				name = this.ToString() + "-" + element_number;
 			}
 
 
