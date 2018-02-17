@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USVG", "USVG.csproj", "{011D3595-BC80-A553-D141-9619EDAF6480}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USVG.Editor", "USVG.Editor.csproj", "{40CDE3CE-AAFD-C61D-DD93-1A65A5FB7354}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{011D3595-BC80-A553-D141-9619EDAF6480}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{011D3595-BC80-A553-D141-9619EDAF6480}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{011D3595-BC80-A553-D141-9619EDAF6480}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40CDE3CE-AAFD-C61D-DD93-1A65A5FB7354}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40CDE3CE-AAFD-C61D-DD93-1A65A5FB7354}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40CDE3CE-AAFD-C61D-DD93-1A65A5FB7354}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40CDE3CE-AAFD-C61D-DD93-1A65A5FB7354}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

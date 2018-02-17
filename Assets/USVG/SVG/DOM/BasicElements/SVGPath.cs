@@ -31,14 +31,14 @@ namespace USVG {
 
 		}
 
-		public override void Render(SVGElement parent, Material baseMaterial)
+		public override void Render(SVGElement parent, Material baseMaterial, onRenderCallback cb)
 		{
 			int i = 0;
 			Paths = new List<GenPath>();
 			generatedPoints = new List<Vector2>();
 			foreach(SVGPathSeg seg in segList){
 				i++;
-				Vector2[] newPoints = seg.GetPoints(20);
+				Vector2[] newPoints = seg.GetPoints(SVGGenerals.pathNSegments);
 
 				if (generatedPoints.Count > 0 && newPoints != null) {
 					if (newPoints[0] == generatedPoints[generatedPoints.Count - 1]) {
@@ -51,6 +51,7 @@ namespace USVG {
 
 				if(seg.GetType() == typeof(SVGPathSegClose)){
 					GenPath path = new GenPath();
+					SVGGenerals.OptimizePoints(ref generatedPoints);
 					path.points = generatedPoints.ToArray();
 					path.closed = true;
 					Paths.Add(path);
@@ -61,6 +62,7 @@ namespace USVG {
 
 			if(generatedPoints.Count>0){
 				GenPath path = new GenPath();
+				SVGGenerals.OptimizePoints(ref generatedPoints);
 				path.points = generatedPoints.ToArray();
 				path.closed = false;
 				Paths.Add(path);
@@ -72,9 +74,9 @@ namespace USVG {
 				return;
 			}
 			vectors_2d = Paths[0].points;
-			foreach (Vector2 vec in vectors_2d) {
-				Debug.Log(name + "-Vector:" + vec);
-			}
+			//foreach (Vector2 vec in vectors_2d) {
+			//	Debug.Log(name + "-Vector:" + vec);
+			//}
 
 			//base.Render(parent, baseMaterial);
 
@@ -97,10 +99,17 @@ namespace USVG {
 			if (renderer == null) renderer = gameObject.GetComponent<Renderer>();
 			renderer.material = baseMaterial;
 
+			renderer.material.name = this.name + "-material";
 			//renderer.material.color = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
 			if (fillColor != null) {
 				renderer.material.color = new Color(fillColor.R, fillColor.G, fillColor.B, fillOpacity);
 				renderer.material.renderQueue = 3000 + element_number;
+			}
+
+			if (cb != null) {
+				cb.Invoke(this.name, msh);
+				cb.Invoke(this.name + "-material", renderer.material);
+				//cb.Invoke(this.name + "renderer", renderer);
 			}
 		}
 
@@ -109,6 +118,7 @@ namespace USVG {
 			CombineInstance[] combine = new CombineInstance[Paths.Count];
 			int it = 0;
 			foreach (GenPath path in Paths) {
+				SVGGenerals.OptimizePoints(ref path.points);
 				// Use the triangulator to get indices for creating triangles
 				Triangulator tr = new Triangulator(path.points);
 				int[] indices = tr.Triangulate();

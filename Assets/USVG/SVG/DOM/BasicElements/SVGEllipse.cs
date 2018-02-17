@@ -32,11 +32,11 @@ namespace USVG {
 			_ry = float.Parse(ry);
 		}
 
-		public override void Render(SVGElement parent, Material baseMaterial)
+		public override void Render(SVGElement parent, Material baseMaterial, onRenderCallback cb)
 		{
 			vectors_2d = GeometryTools.CreateEllipse(_cx, _cy, _rx, _ry, nSegments);
 
-			base.Render(parent, baseMaterial);
+			base.Render(parent, baseMaterial, cb);
 		}
 	}
 

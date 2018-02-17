@@ -42,11 +42,11 @@ namespace USVG {
 		}
 
 
-		public override void Render(SVGElement parent, Material baseMaterial)
+		public override void Render(SVGElement parent, Material baseMaterial, onRenderCallback cb)
 		{
 			vectors_2d = _listPoints.ToArray();
 
-			base.Render(parent, baseMaterial);
+			base.Render(parent, baseMaterial, cb);
 		}
 	}
 

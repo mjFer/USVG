@@ -21,16 +21,19 @@ namespace USVG {
 		}
 
 
-		public override void Render(SVGElement parent, Material baseMaterial)
+		public override void Render(SVGElement parent, Material baseMaterial, onRenderCallback cb)
 		{
 			if (_gameobject == null) {
 				_gameobject = new GameObject(name);
 				_gameobject.AddComponent(typeof(MeshRenderer));
 				if (parent != null)
 					_gameobject.transform.parent = parent.gameObject.transform;
+
+				
 			}
 
 			if (vectors_2d != null && vectors_2d.Length > 0){
+				SVGGenerals.OptimizePoints(ref vectors_2d);
 				// Use the triangulator to get indices for creating triangles
 				Triangulator tr = new Triangulator(vectors_2d);
 				int[] indices = tr.Triangulate();
@@ -70,7 +73,8 @@ namespace USVG {
 					renderer.material.renderQueue = 3000 + element_number;
 				}
 
-
+				if (cb != null)
+					cb.Invoke(this.name, msh);
 			}
 		}
 	}

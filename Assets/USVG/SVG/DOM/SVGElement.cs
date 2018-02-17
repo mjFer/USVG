@@ -5,6 +5,9 @@ using System.Text;
 using UnityEngine;
 
 namespace USVG {
+
+	public delegate void onRenderCallback(string name, UnityEngine.Object obj);
+
 	public abstract class SVGElement {
 		Dictionary<string, string> attrList;
 		SVGTransformList transformlist;
@@ -100,7 +103,7 @@ namespace USVG {
 		}
 
 
-		public abstract void Render(SVGElement parent, Material baseMaterial);
+		public abstract void Render(SVGElement parent, Material baseMaterial, onRenderCallback cb = null);
 	}
 
 }

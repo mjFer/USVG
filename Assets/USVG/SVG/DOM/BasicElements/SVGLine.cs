@@ -31,7 +31,7 @@ namespace USVG {
 			
 		}
 
-		public override void Render(SVGElement parent, Material baseMaterial)
+		public override void Render(SVGElement parent, Material baseMaterial, onRenderCallback cb)
 		{
 			Debug.LogError("No Implementado!");
 		}
