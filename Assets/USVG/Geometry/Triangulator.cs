@@ -59,8 +59,29 @@ public class Triangulator {
 		}
 
 		indices.Reverse();
+
+		//checkOrientation(ref indices);
+
 		return indices.ToArray();
 	}
+
+	private void checkOrientation(ref List<int> indices){
+		
+		for(int i=0; i<indices.Count; i+=3){
+			int v1 = indices[i];
+			int v2 = indices[i + 1];
+			int v3 = indices[i + 2 ];
+
+			var surfaceNormal = Vector3.Cross(m_points[v1] - m_points[v2], m_points[v3] - m_points[v1]);
+			if (surfaceNormal.z < 0) {
+				//indices.Reverse();
+				indices[i + 1] = indices[i + 2];
+				indices[i + 2] = v2;
+			}
+		}
+
+	}
+
 
 	private float Area()
 	{

@@ -90,6 +90,7 @@ namespace USVG {
 
 			GenerateMeshes();
 
+
 			if (filter == null) filter = gameObject.GetComponent<MeshFilter>();
 			if (filter == null)
 				filter = gameObject.AddComponent(typeof(MeshFilter)) as MeshFilter;
@@ -97,19 +98,22 @@ namespace USVG {
 			filter.mesh = msh;
 
 			if (renderer == null) renderer = gameObject.GetComponent<Renderer>();
-			renderer.material = baseMaterial;
+			//renderer.sharedMaterials[0] = baseMaterial;
+			renderer.sharedMaterial = baseMaterial;
 
-			renderer.material.name = this.name + "-material";
+			//renderer. = "USVG";
+			renderer.sortingOrder = element_number * 2;
+
+			//renderer.material.name = this.name + "-material";
 			//renderer.material.color = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
-			if (fillColor != null) {
-				renderer.material.color = new Color(fillColor.R, fillColor.G, fillColor.B, fillOpacity);
-				renderer.material.renderQueue = 3000 + element_number;
-			}
+			//if (fillColor != null) {
+			//	renderer.material.color = new Color(fillColor.R, fillColor.G, fillColor.B, fillOpacity);
+			//	renderer.material.renderQueue = 3000 + element_number;
+			//}
 
 			if (cb != null) {
 				cb.Invoke(this.name, msh);
-				cb.Invoke(this.name + "-material", renderer.material);
-				//cb.Invoke(this.name + "renderer", renderer);
+				//cb.Invoke(this.name + "-material", renderer.material);
 			}
 		}
 
@@ -133,6 +137,16 @@ namespace USVG {
 				Mesh _msh = new Mesh();
 				_msh.vertices = vertices;
 				_msh.triangles = indices;
+
+				if (fillColor != null) {
+					// Use vertex colors
+					Color[] colors = new Color[path.points.Length];
+					for (int i = 0; i < colors.Length; i++) {
+						colors[i] = new Color(fillColor.R, fillColor.G, fillColor.B, fillOpacity);
+					}
+					_msh.colors = colors;
+				}
+				
 
 				//Normals
 				Vector3[] normals = new Vector3[path.points.Length];

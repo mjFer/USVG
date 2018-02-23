@@ -29,12 +29,12 @@ public class SVGColor {
 	private void ParseColor(string atr){
 		Regex r = new Regex(pattern1);
 		Regex r2 = new Regex(pattern2);
-		if (r.IsMatch(atr)){
+		if (r.IsMatch(atr)) {
 			Match match = r.Match(atr);
 			float.TryParse(match.Groups[0].Value, out _r);
 			float.TryParse(match.Groups[1].Value, out _g);
 			float.TryParse(match.Groups[2].Value, out _b);
-		} else if(r2.IsMatch(atr)){
+		} else if (r2.IsMatch(atr)) {
 			Match match = r.Match(atr);
 			float.TryParse(match.Groups[0].Value, out _r);
 			float.TryParse(match.Groups[1].Value, out _g);
@@ -42,15 +42,17 @@ public class SVGColor {
 			_r /= 100.0f;
 			_g /= 100.0f;
 			_b /= 100.0f;
-		} else if( atr[0] == '#'){
-			if(atr.Length == 4){
+		} else if (atr[0] == '#') {
+			if (atr.Length == 4) {
 				//ejemplo #FFF
 				ParseHex3(atr.Substring(1));
-			} else if(atr.Length == 7){
+			} else if (atr.Length == 7) {
 				//ejemplo #FFFFFF
 				ParseHex6(atr.Substring(1));
 			}
-		}else{
+		} else if (atr.StartsWith("url")) {
+			Debug.LogWarning("url not implemented");
+		} else {
 			//ejemplo red
 			string hexCode = _colorNames[atr];
 			ParseHex6(hexCode);

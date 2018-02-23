@@ -14,13 +14,17 @@ namespace USVG {
 		protected string name;
 		protected int element_number;
 		protected SVGColor fillColor;
-		protected SVGColor strokeColor;
+
 		protected float fillOpacity;
-		protected float strokeOpacity;
-		protected float strokeWidth;
+
 		protected bool hasFill;
 		protected bool hasStroke;
 		protected bool visible;
+
+		protected SVGColor strokeColor;
+		protected float strokeOpacity;
+		protected float strokeWidth;
+		protected SVGStroke stroke;
 
 		protected GameObject _gameobject;
 
@@ -30,7 +34,9 @@ namespace USVG {
 
 		protected SVGElement(Dictionary<string, string> _attrList) {
 			attrList = _attrList;
-			
+
+			stroke = null;
+
 			fillColor = null;
 			strokeColor = null;
 			fillOpacity = 1.0f;
@@ -98,6 +104,10 @@ namespace USVG {
 						//Debug.Log("Attributo no implementado: " + attr.Key);
 						break;
 				}
+			}
+
+			if(hasStroke){
+				stroke = new SVGStroke(strokeColor, strokeWidth, strokeOpacity);
 			}
 
 		}

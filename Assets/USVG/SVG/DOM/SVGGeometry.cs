@@ -28,8 +28,6 @@ namespace USVG {
 				_gameobject.AddComponent(typeof(MeshRenderer));
 				if (parent != null)
 					_gameobject.transform.parent = parent.gameObject.transform;
-
-				
 			}
 
 			if (vectors_2d != null && vectors_2d.Length > 0){
@@ -49,14 +47,32 @@ namespace USVG {
 				msh.vertices = vertices;
 				msh.triangles = indices;
 
-				//Normals
-				Vector3[] normals = new Vector3[vectors_2d.Length];
-				for (int i = 0; i < normals.Length; i++) {
-					normals[i] = new Vector3(0, 0, 1);
+				if (fillColor != null) {
+					// Use vertex colors
+					Color[] colors = new Color[vertices.Length];
+					for (int i = 0; i < colors.Length; i++) {
+						colors[i] = new Color(fillColor.R, fillColor.G, fillColor.B, fillOpacity);
+					}
+					msh.colors = colors;
 				}
+
+				//Normals
+				//Vector3[] normals = new Vector3[vectors_2d.Length];
+				//for (int i = 0; i < normals.Length; i++) {
+				//	normals[i] = new Vector3(0, 0, 1);
+				//}
 				msh.RecalculateNormals();
 				msh.RecalculateBounds();
 
+				//Generate Path mesh
+				if (stroke != null) {
+					stroke.GenerateMesh(vertices);
+					Mesh strokeMesh = stroke.GetMesh();
+					CombineInstance combine = new CombineInstance();
+					combine.mesh = strokeMesh;
+					combine.transform = _gameobject.transform.localToWorldMatrix;
+					msh.CombineMeshes(new CombineInstance[] { combine });
+				}
 
 				if (filter == null) filter = gameObject.GetComponent<MeshFilter>();
 				if (filter == null)
@@ -65,16 +81,22 @@ namespace USVG {
 				filter.mesh = msh;
 
 				if (renderer == null) renderer = gameObject.GetComponent<Renderer>();
-				renderer.material = baseMaterial;
+				renderer.sharedMaterials[0] = baseMaterial;
+				//renderer.material = baseMaterial;
+				//renderer.material.name = name + "-material";
+				//renderer.sortingLayerName = "USVG";
+				renderer.sortingOrder = element_number;
 
 				//renderer.material.color = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
-				if (fillColor != null){
-					renderer.material.color = new Color(fillColor.R, fillColor.G, fillColor.B, fillOpacity);
-					renderer.material.renderQueue = 3000 + element_number;
-				}
+				//if (fillColor != null){
+				//	renderer.material.color = new Color(fillColor.R, fillColor.G, fillColor.B, fillOpacity);
+				//	renderer.material.renderQueue = 3000 + element_number;
+				//}
 
-				if (cb != null)
+				if (cb != null) {
 					cb.Invoke(this.name, msh);
+					//cb.Invoke(renderer.material.name, renderer.material);
+				}
 			}
 		}
 	}
