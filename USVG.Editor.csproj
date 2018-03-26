@@ -5,16 +5,16 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{011D3595-BC80-A553-D141-9619EDAF6480}</ProjectGuid>
+    <ProjectGuid>{40CDE3CE-AAFD-C61D-DD93-1A65A5FB7354}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
-    <UnityProjectType>Game:1</UnityProjectType>
+    <UnityProjectType>Editor:5</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.1.0f3</UnityVersion>
     <RootNamespace></RootNamespace>
@@ -55,11 +55,23 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Advertisements.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>Library\UnityAssemblies\UnityEditor.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TestRunner">
+      <HintPath>Library\UnityAssemblies\UnityEditor.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
       <HintPath>Library\UnityAssemblies\UnityEngine.TestRunner.dll</HintPath>
@@ -70,50 +82,49 @@
     <Reference Include="UnityEngine.Timeline">
       <HintPath>Library\UnityAssemblies\UnityEngine.Timeline.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Timeline">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TreeEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.TreeEditor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Analytics">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.HoloLens">
+      <HintPath>Library\UnityAssemblies\UnityEditor.HoloLens.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Purchasing">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Purchasing.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.VR">
+      <HintPath>Library\UnityAssemblies\UnityEditor.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
+      <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\USVG\Geometry\Shapes\BasicShapes.cs" />
-    <Compile Include="Assets\USVG\Geometry\Shapes\ShapesTest.cs" />
-    <Compile Include="Assets\USVG\Geometry\Triangulator.cs" />
-    <Compile Include="Assets\USVG\Geometry\TriangulatorTester.cs" />
-    <Compile Include="Assets\USVG\MeshPointDebug.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\Attributes\SVGColor.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\Attributes\SVGStroke.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGCircle.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGEllipse.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGLine.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPath.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSeg.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSegArc.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSegClose.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSegCubicBezShortTo.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSegCubicBezTo.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSegLineTo.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSegMoveto.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSegQuadBezShortTo.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSegQuadBezTo.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPolygon.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPolyline.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGRect.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\ContainerElements\Interface\ISVGContainer.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\ContainerElements\SVGG.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\ContainerElements\SVGSVG.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\SVGElement.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\SVGGeometry.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\Transform\SVGMatrix.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\Transform\SVGTransform.cs" />
-    <Compile Include="Assets\USVG\SVG\DOM\Transform\SVGTransformList.cs" />
-    <Compile Include="Assets\USVG\SVG\SVGGenerals.cs" />
-    <Compile Include="Assets\USVG\SVG\SVGParser.cs" />
-    <Compile Include="Assets\USVG\SVGLoader.cs" />
-    <Compile Include="Assets\USVG\Utils\SmallXmlParser.cs" />
-    <Compile Include="Assets\USVG\Utils\StringParser.cs" />
+    <ProjectReference Include="USVG.csproj">
+      <Project>{011D3595-BC80-A553-D141-9619EDAF6480}</Project>
+      <Name>USVG</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\USVG\Editor\USVGAssetImporter.cs" />
+    <Compile Include="Assets\USVG\Editor\USVGAssetImporterInspector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\USVG\Materials\NewUnlitShader.shader" />
