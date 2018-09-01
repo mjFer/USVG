@@ -6,6 +6,13 @@ This plugin works is a custom asset importer, it allows you to import SVG files 
 
 **Its Drag and drop!**
 
+**IMPORTANT**: After Unity's announcement of the version 2018.2 which incorporates official support for vector graphics, it does not make sense to continue developing this plugin (at least for now).  Feel free to improve this code as you wish.
+
+**IMPORTANT2**: Its Really buggy, requires some work to make it stable.
+
+I will be really pleased if it turns out useful for you. Also if you employ my solution for your work please put me in the credits
+
+
 ## Features
 At the moment it supports basic SVG Shapes:
  * Rect (and rounded rect too)
@@ -25,11 +32,14 @@ Supports Transformations, Fill.
  * Strokes (now are parsed but no rendered)
  * Gradiends with shaders (maybe?)
  
-## How To Use It
-TODO
+ 
+ 
+## Example of imported SVG
+![Config Options](https://github.com/mjFer/USVG/blob/master/img/panel.png)
+
 
 ## Config Options
-TODO
+![Config Options](https://github.com/mjFer/USVG/blob/master/img/homer.png)
 
 ## Others
 I used the following documentation as a reference for class diagramming (DOM Models)

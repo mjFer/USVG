@@ -44,7 +44,7 @@ public class USVGAssetImporter : ScriptedImporter {
 			baseMaterial = new Material(Shader.Find("Sprites/USVGSprite")); //Sprites/USVGSprite
 			//baseMaterial = new Material(Shader.Find("Sprites/Default")); //Sprites/USVGSprite
 		}
-		ctx.AddSubAsset("baseMaterial",baseMaterial);
+		ctx.AddObjectToAsset("baseMaterial",baseMaterial);
 
 		string text = File.ReadAllText(ctx.assetPath, Encoding.UTF8);
 		SVGParser parser = new SVGParser(text);
@@ -57,8 +57,9 @@ public class USVGAssetImporter : ScriptedImporter {
 				ele.Render(null, baseMaterial);
 				MergeAll(ctx, ele.gameObject);
 			} else{
-				ele.Render(null, baseMaterial, ctx.AddSubAsset);
-				ctx.SetMainAsset("MainAsset", ele.gameObject);
+				ele.Render(null, baseMaterial, ctx.AddObjectToAsset);
+				ctx.AddObjectToAsset("MainAsset", ele.gameObject);
+				ctx.SetMainObject(ele.gameObject);
 			}
 			
 
@@ -87,8 +88,9 @@ public class USVGAssetImporter : ScriptedImporter {
 		var renderer = combinedObject.AddComponent<MeshRenderer>();
 		renderer.sharedMaterial = baseMaterial;
 
-		ctx.AddSubAsset("MainMesh", combinedMesh);
-		ctx.SetMainAsset("MainAsset", combinedObject);
+		ctx.AddObjectToAsset("MainMesh", combinedMesh);
+		ctx.AddObjectToAsset("MainAsset", combinedObject);
+		ctx.SetMainObject(combinedObject);
 
 	}
 

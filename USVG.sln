@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USVG", "USVG.csproj", "{011D3595-BC80-A553-D141-9619EDAF6480}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USVG.Editor", "USVG.Editor.csproj", "{40CDE3CE-AAFD-C61D-DD93-1A65A5FB7354}"

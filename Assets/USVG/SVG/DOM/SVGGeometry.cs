@@ -63,6 +63,7 @@ namespace USVG {
 				//}
 				msh.RecalculateNormals();
 				msh.RecalculateBounds();
+				msh.RecalculateTangents();
 
 				//Generate Path mesh
 				if (stroke != null) {
@@ -78,10 +79,10 @@ namespace USVG {
 				if (filter == null)
 					filter = gameObject.AddComponent(typeof(MeshFilter)) as MeshFilter;
 
-				filter.mesh = msh;
+				filter.sharedMesh = msh;
 
 				if (renderer == null) renderer = gameObject.GetComponent<Renderer>();
-				renderer.sharedMaterials[0] = baseMaterial;
+				renderer.sharedMaterial = baseMaterial;
 				//renderer.material = baseMaterial;
 				//renderer.material.name = name + "-material";
 				//renderer.sortingLayerName = "USVG";
@@ -94,7 +95,7 @@ namespace USVG {
 				//}
 
 				if (cb != null) {
-					cb.Invoke(this.name, msh);
+					cb.Invoke(this.name + "_msh", msh);
 					//cb.Invoke(renderer.material.name, renderer.material);
 				}
 			}

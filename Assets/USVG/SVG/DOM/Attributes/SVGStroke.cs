@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 using System.Text.RegularExpressions;
+using UnityEngine;
+using UnityEditor;
 
 public class SVGStroke {
 	Mesh _mesh;
@@ -51,9 +53,16 @@ public class SVGStroke {
 		List<Vector3> mesh_points = new List<Vector3>();
 		List<int> triangle_list = new List<int>();
 
-		for(int i=0; i<_points.Length-1; i++){
-			Vector2 p1 = _points[i];
-			Vector2 p2 = _points[i+1];
+		for(int i=0; i<_points.Length; i++){
+			Vector2 p1;
+			Vector2 p2;
+			if (i < _points.Length - 1) {
+				p1 = _points[i];
+				p2 = _points[i + 1];
+			}else{
+				p1 = _points[i-1];
+				p2 = _points[i];
+			}
 
 			float dx = p2.x - p1.x;
 			float dy = p2.y - p1.y;
@@ -65,8 +74,8 @@ public class SVGStroke {
 			norm2.Normalize();
 
 			//Puntos nuevos
-			Vector2 np1 = p1 + norm1;
-			Vector2 np2 = p1 + norm2;
+			Vector2 np1 = p1 + norm1 * _width;
+			Vector2 np2 = p1 + norm2 * _width;
 
 			mesh_points.Add(np1);
 			mesh_points.Add(np2);
@@ -77,13 +86,13 @@ public class SVGStroke {
 				triangle_list.Add((i - 0) * 2);
 				triangle_list.Add((i ) * 2 - 1);
 				//Segundo Triangulo
-				triangle_list.Add( i * 2 - 1);
-				triangle_list.Add( i  * 2);
-				triangle_list.Add( i * 2 + 1);
+				triangle_list.Add(i * 2);
+				triangle_list.Add(i * 2 + 1);
+				triangle_list.Add(i * 2 - 1);
 			}
-
-
 		}
+
+		triangle_list.Reverse();
 
 		_mesh = new Mesh();
 		_mesh.vertices = mesh_points.ToArray();
@@ -93,6 +102,18 @@ public class SVGStroke {
 			colors[i] = new Color(_color.R, _color.G, _color.B, _opacity);
 		}
 		_mesh.colors = colors;
+
+		Vector3[] normals = new Vector3[mesh_points.Count];
+		for (int i = 0; i < normals.Length; i++) {
+			normals[i] = -Vector3.forward;
+		}
+		_mesh.normals = normals;
+
+		_mesh.RecalculateBounds();
+		_mesh.RecalculateTangents();
+		_mesh.RecalculateNormals();
+
+		AssetDatabase.CreateAsset(_mesh, "Assets/TestMesh");
 	}
 
 	public Mesh GetMesh(){

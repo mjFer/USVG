@@ -14,7 +14,7 @@ public class MeshPointDebug : MonoBehaviour {
 		int number = 0;
 		if(mesh ==null){
 			filter = GetComponent<MeshFilter>();
-			mesh = filter.mesh;
+			mesh = filter.sharedMesh;
 		}
 
 		if (remarkPointIndex < 0)

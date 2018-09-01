@@ -40,7 +40,7 @@ namespace USVG {
 			fillColor = null;
 			strokeColor = null;
 			fillOpacity = 1.0f;
-			strokeOpacity = 0.0f;
+			strokeOpacity = 1.0f;
 			strokeWidth = 0;
 			hasFill = true;
 			hasStroke = false;
@@ -70,11 +70,11 @@ namespace USVG {
 						}
 						break;
 					case "opacity":
-						fillOpacity = StringParser.StringAttrFloat(attr.Key);
+						fillOpacity = StringParser.StringAttrFloat(attr.Value);
 						strokeOpacity = fillOpacity;
 						break;
 					case "fill-opacity":
-						fillOpacity = StringParser.StringAttrFloat(attr.Key);
+						fillOpacity = StringParser.StringAttrFloat(attr.Value);
 						break;
 					case "stroke":
 						if (String.Compare(attr.Value, "none") == 0) {
@@ -85,10 +85,10 @@ namespace USVG {
 						}
 						break;
 					case "stroke-width":
-						strokeWidth = StringParser.StringAttrFloat(attr.Key);
+						strokeWidth = StringParser.StringAttrFloat(attr.Value);
 						break;
 					case "stroke-opacity":
-						strokeOpacity = StringParser.StringAttrFloat(attr.Key);
+						strokeOpacity = StringParser.StringAttrFloat(attr.Value);
 						break;
 					case "display":
 						if (String.Compare(attr.Value, "none") == 0) {
@@ -98,7 +98,7 @@ namespace USVG {
 						break;
 					case "style":
 						//ParseStyle(value);
-						Debug.Log("Attributo style no implementado aun:" + attr.Key);
+						Debug.Log("Attributo style no implementado aun:" + attr.Value);
 						break;
 					default:
 						//Debug.Log("Attributo no implementado: " + attr.Key);
