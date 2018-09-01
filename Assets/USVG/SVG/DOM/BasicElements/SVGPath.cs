@@ -22,7 +22,7 @@ namespace USVG {
 			segList = new List<SVGPathSeg>();
 
 			if (_attrList.ContainsKey("d")){
-				Debug.Log(_attrList["d"]);
+				//Debug.Log(_attrList["d"]);
 				List<KeyValuePair<string, string>> dic = StringParser.StringPathSep(_attrList["d"]);
 				foreach(KeyValuePair<string, string> keypar in dic){
 					ParsePathType(keypar.Key[0], keypar.Value);
@@ -206,6 +206,12 @@ namespace USVG {
 				case 'Z':
 				case 'z':
 					segList.Add(new SVGPathSegClose( type == 'z' ? true : false, last));
+					break;
+				case 'A':
+				case 'a':
+					//A rx ry x-axis-rotation large-arc-flag sweep-flag x y
+					//a rx ry x-axis - rotation large - arc - flag sweep - flag dx dy
+					segList.Add(new SVGPathSegArc(vals[0], vals[1], vals[2], !(vals[3]==0), !(vals[4]==0), vals[5], vals[6], type == 'a' ? true : false, last));
 					break;
 				default:
 					break;

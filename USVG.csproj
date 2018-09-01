@@ -248,6 +248,7 @@
     <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGLine.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPath.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSeg.cs" />
+    <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSegArc.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSegClose.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSegCubicBezShortTo.cs" />
     <Compile Include="Assets\USVG\SVG\DOM\BasicElements\SVGPathSegs\SVGPathSegCubicBezTo.cs" />
@@ -275,19 +276,6 @@
   <ItemGroup>
     <None Include="Assets\USVG\Materials\NewUnlitShader.shader" />
     <None Include="Assets\USVG\Materials\USVGSprite.shader" />
-    <None Include="Assets\svg_test_files\OLD\Cuadra1(ConTaller) copia.txt" />
-    <None Include="Assets\svg_test_files\OLD\bezierCurve.txt" />
-    <None Include="Assets\svg_test_files\OLD\bezier_c_s_curve.txt" />
-    <None Include="Assets\svg_test_files\OLD\compass.txt" />
-    <None Include="Assets\svg_test_files\OLD\homer-simpson.txt" />
-    <None Include="Assets\svg_test_files\OLD\homer-simpsonIncomp.txt" />
-    <None Include="Assets\svg_test_files\OLD\moto_lucas.txt" />
-    <None Include="Assets\svg_test_files\OLD\moto_lucas_reduc.txt" />
-    <None Include="Assets\svg_test_files\OLD\myspace.txt" />
-    <None Include="Assets\svg_test_files\OLD\piramids.txt" />
-    <None Include="Assets\svg_test_files\OLD\rects.txt" />
-    <None Include="Assets\svg_test_files\OLD\shapes.txt" />
-    <None Include="Assets\svg_test_files\OLD\transform_rect.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
